@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="chrome://global/skin/in-content/common.css">
+    <link rel="stylesheet" href="chrome://mozapps/content/extensions/aboutaddons.css">
+
+    <link rel="localization" href="branding/brand.ftl">
+    <link rel="localization" href="toolkit/about/aboutAddons.ftl">
+
+    <script src="chrome://mozapps/content/extensions/aboutaddonsCommon.js"></script>
+    <script src="chrome://mozapps/content/extensions/aboutaddons.js"></script>
+  </head>
+  <body>
+    <div id="main">
+    </div>
+
+    <template name="addon-options">
+      <panel-list>
+        <panel-item action="toggle-disabled"></panel-item>
+        <panel-item data-l10n-id="remove-addon-button" action="remove"></panel-item>
+        <panel-item data-l10n-id="install-update-button" action="install-update" badged></panel-item>
+        <panel-item-separator></panel-item-separator>
+        <panel-item data-l10n-id="expand-addon-button" action="expand"></panel-item>
+      </panel-list>
+    </template>
+
+    <template name="plugin-options">
+      <panel-list>
+        <panel-item data-l10n-id="ask-to-activate-button" action="ask-to-activate"></panel-item>
+        <panel-item data-l10n-id="always-activate-button" action="always-activate"></panel-item>
+        <panel-item data-l10n-id="never-activate-button" action="never-activate"></panel-item>
+        <panel-item-separator></panel-item-separator>
+        <panel-item data-l10n-id="expand-addon-button" action="expand"></panel-item>
+      </panel-list>
+    </template>
+
+    <template name="card">
+      <div class="card addon">
+        <img class="card-heading-image">
+        <div class="addon-card-collapsed">
+          <img class="card-heading-icon addon-icon">
+          <div class="card-contents">
+            <div class="addon-name-container">
+              <span class="addon-name"></span>
+              <div class="addon-badge addon-badge-private-browsing-allowed"
+                    data-l10n-id="addon-badge-private-browsing-allowed"
+                    hidden></div>
+            </div>
+            <span class="addon-description"></span>
+          </div>
+          <div class="more-options-menu">
+            <button class="more-options-button ghost-button" action="more-options"></button>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template name="addon-details">
+      <div class="addon-detail-description"></div>
+      <div class="addon-detail-contribute">
+        <label data-l10n-id="detail-contributions-description"></label>
+        <button
+          class="addon-detail-contribute-button"
+          action="contribute"
+          data-l10n-id="detail-contributions-button"
+          data-l10n-attrs="accesskey">
+        </button>
+      </div>
+      <div class="addon-detail-row addon-detail-row-updates">
+        <label data-l10n-id="addon-detail-updates-label"></label>
+        <div>
+          <button class="button-link" data-l10n-id="addon-detail-update-check-label" action="update-check" hidden></button>
+          <label>
+            <input type="radio" name="autoupdate" value="1"/>
+            <span data-l10n-id="addon-detail-updates-radio-default"></span>
+          </label>
+          <label>
+            <input type="radio" name="autoupdate" value="2"/>
+            <span data-l10n-id="addon-detail-updates-radio-on"></span>
+          </label>
+          <label>
+            <input type="radio" name="autoupdate" value="0"/>
+            <span data-l10n-id="addon-detail-updates-radio-off"></span>
+          </label>
+        </div>
+      </div>
+      <div class="addon-detail-row addon-detail-row-has-help addon-detail-row-private-browsing">
+        <label data-l10n-id="detail-private-browsing-label"></label>
+        <div>
+          <label>
+            <input type="radio" name="private-browsing" value="1"/>
+            <span data-l10n-id="addon-detail-private-browsing-allow"></span>
+          </label>
+          <label>
+            <input type="radio" name="private-browsing" value="0"/>
+            <span data-l10n-id="addon-detail-private-browsing-disallow"></span>
+          </label>
+        </div>
+      </div>
+      <div class="addon-detail-row-help" data-l10n-id="addon-detail-private-browsing-help">
+        <a target="_blank" data-l10n-name="learn-more"></a>
+      </div>
+      <div class="addon-detail-row addon-detail-row-author">
+        <label data-l10n-id="addon-detail-author-label"></label>
+      </div>
+      <div class="addon-detail-row addon-detail-row-version">
+        <label data-l10n-id="addon-detail-version-label"></label>
+      </div>
+      <div class="addon-detail-row addon-detail-row-lastUpdated">
+        <label data-l10n-id="addon-detail-last-updated-label"></label>
+      </div>
+      <div class="addon-detail-row addon-detail-row-homepage">
+        <label data-l10n-id="addon-detail-homepage-label"></label>
+        <a target="_blank"></a>
+      </div>
+      <div class="addon-detail-row addon-detail-row-rating">
+        <label data-l10n-id="addon-detail-rating-label"></label>
+        <div class="addon-detail-rating">
+          <span class="addon-detail-rating-star"></span>
+          <span class="addon-detail-rating-star"></span>
+          <span class="addon-detail-rating-star"></span>
+          <span class="addon-detail-rating-star"></span>
+          <span class="addon-detail-rating-star"></span>
+          <a target="_blank"></a>
+        </div>
+      </div>
+    </template>
+
+    <template name="panel-list">
+      <link rel="stylesheet" href="chrome://mozapps/content/extensions/panel-list.css">
+      <div class="arrow top"></div>
+      <div class="list">
+        <slot></slot>
+      </div>
+      <div class="arrow bottom"></div>
+    </template>
+
+    <template name="panel-item">
+      <link rel="stylesheet" href="chrome://mozapps/content/extensions/panel-item.css">
+      <button><slot></slot></button>
+    </template>
+  </body>
+</html>
