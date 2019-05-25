@@ -1,4 +1,4 @@
-FROM debian
+FROM ubuntu
 LABEL maintainer="Josiah Bruner"
 
 ENV SHELL /bin/bash
