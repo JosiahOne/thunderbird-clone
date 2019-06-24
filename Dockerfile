@@ -17,4 +17,4 @@ WORKDIR thunderbird-clone
 
 RUN ["/bin/bash", "bootstrap.sh"]
 
-RUN "/bin/bash build.sh"
+RUN ["/bin/bash", "build.sh"]
